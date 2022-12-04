@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A29B93C293C6C8F003D2DDC /* libstmrtp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A29B938293C6C80003D2DDC /* libstmrtp.a */; };
+		0A29BACF293C6ED2003D2DDC /* libopus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A29BAC1293C6ED2003D2DDC /* libopus.a */; };
 		0A6E4AB5293C609700B5963A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6E4AB4293C609700B5963A /* AppDelegate.m */; };
 		0A6E4AB8293C609700B5963A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6E4AB7293C609700B5963A /* ViewController.m */; };
 		0A6E4ABA293C609800B5963A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A6E4AB9293C609800B5963A /* Assets.xcassets */; };
@@ -35,6 +36,14 @@
 
 /* Begin PBXFileReference section */
 		0A29B931293C6C80003D2DDC /* stmrtp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = stmrtp.xcodeproj; path = ../../../../build/mac/stmrtp.xcodeproj; sourceTree = "<group>"; };
+		0A29BAB6293C6ED2003D2DDC /* opus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opus.h; sourceTree = "<group>"; };
+		0A29BAB7293C6ED2003D2DDC /* opus_multistream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opus_multistream.h; sourceTree = "<group>"; };
+		0A29BAB8293C6ED2003D2DDC /* opus_custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opus_custom.h; sourceTree = "<group>"; };
+		0A29BAB9293C6ED2003D2DDC /* opus_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opus_types.h; sourceTree = "<group>"; };
+		0A29BABA293C6ED2003D2DDC /* opus_defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opus_defines.h; sourceTree = "<group>"; };
+		0A29BABB293C6ED2003D2DDC /* opus_projection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opus_projection.h; sourceTree = "<group>"; };
+		0A29BABC293C6ED2003D2DDC /* opus_version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opus_version.h; sourceTree = "<group>"; };
+		0A29BAC1293C6ED2003D2DDC /* libopus.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopus.a; sourceTree = "<group>"; };
 		0A6E4AB0293C609700B5963A /* rtpdemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rtpdemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A6E4AB3293C609700B5963A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0A6E4AB4293C609700B5963A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -54,6 +63,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A29B93C293C6C8F003D2DDC /* libstmrtp.a in Frameworks */,
+				0A29BACF293C6ED2003D2DDC /* libopus.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +83,46 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0A29BAB4293C6ED2003D2DDC /* opus */ = {
+			isa = PBXGroup;
+			children = (
+				0A29BAB5293C6ED2003D2DDC /* include */,
+				0A29BABC293C6ED2003D2DDC /* opus_version.h */,
+				0A29BABD293C6ED2003D2DDC /* lib */,
+			);
+			name = opus;
+			path = ../../../../third_party/opus;
+			sourceTree = "<group>";
+		};
+		0A29BAB5293C6ED2003D2DDC /* include */ = {
+			isa = PBXGroup;
+			children = (
+				0A29BAB6293C6ED2003D2DDC /* opus.h */,
+				0A29BAB7293C6ED2003D2DDC /* opus_multistream.h */,
+				0A29BAB8293C6ED2003D2DDC /* opus_custom.h */,
+				0A29BAB9293C6ED2003D2DDC /* opus_types.h */,
+				0A29BABA293C6ED2003D2DDC /* opus_defines.h */,
+				0A29BABB293C6ED2003D2DDC /* opus_projection.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		0A29BABD293C6ED2003D2DDC /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				0A29BAC0293C6ED2003D2DDC /* mac */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		0A29BAC0293C6ED2003D2DDC /* mac */ = {
+			isa = PBXGroup;
+			children = (
+				0A29BAC1293C6ED2003D2DDC /* libopus.a */,
+			);
+			path = mac;
 			sourceTree = "<group>";
 		};
 		0A6E4AA7293C609700B5963A = {
@@ -95,6 +145,7 @@
 		0A6E4AB2293C609700B5963A /* rtpdemo */ = {
 			isa = PBXGroup;
 			children = (
+				0A29BAB4293C6ED2003D2DDC /* opus */,
 				0A29B931293C6C80003D2DDC /* stmrtp.xcodeproj */,
 				0A6E4AB3293C609700B5963A /* AppDelegate.h */,
 				0A6E4AB4293C609700B5963A /* AppDelegate.m */,
@@ -346,6 +397,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../../src\"",
+					"\"$(SRCROOT)/../../../third_party/opus/include\"",
+				);
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -353,6 +408,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../../third_party/opus/lib/mac\"";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stm.rtpdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -370,6 +426,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../../src\"",
+					"\"$(SRCROOT)/../../../third_party/opus/include\"",
+				);
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -377,6 +437,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../../third_party/opus/lib/mac\"";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stm.rtpdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
