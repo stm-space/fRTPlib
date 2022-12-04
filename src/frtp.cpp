@@ -50,10 +50,10 @@ uint32_t fRTPSetConfig(fRTPState * state, uint32_t connID, uint8_t* config) {
 
 uint32_t fRTPInternalRecvRTP(fRTPConnection* conn)
 {
-  sockaddr_in fromAddr;
+  sockaddr fromAddr;
   while (1) {
     int fromAddrSize = sizeof(fromAddr);
-    int32_t ret = recvfrom(conn->socket, (char *)conn->inPacketBuffer, conn->inPacketBufferLen, 0, (SOCKADDR *)&fromAddr, &fromAddrSize);
+    int32_t ret = recvfrom(conn->socket, (void *)conn->inPacketBuffer, conn->inPacketBufferLen, 0, (sockaddr *)&fromAddr, (socklen_t *)&fromAddrSize);
     if (ret == -1) {
       /*
       int _error = WSAGetLastError();

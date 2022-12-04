@@ -11,6 +11,7 @@
 #else
   #include<arpa/inet.h>
   #include<sys/socket.h>
+  #include <unistd.h>
 #endif
 
 #define MAX_PACKET 65535
@@ -18,8 +19,12 @@
 #define FRTP_OK 0x0
 #define FRTP_ERROR 0xFFFFFFFF
 
+#if defined(_WIN32)
 #define FRTP_API __declspec(dllexport)   
-  
+#else
+#define FRTP_API
+#endif
+
 //#define FRTP_VERBOSE
 
 
