@@ -1,4 +1,4 @@
-﻿CMAKE_MINIMUM_REQUIRED(VERSION 3.4.1)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.4.1)
 
 ##################################### cmake util for set_if ########################
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
@@ -7,6 +7,10 @@ include(cmake_util)
 ##################################### project #####################################
 project(stmrtp)
 message("PROJECT_SOURCE_DIR is: " ${PROJECT_SOURCE_DIR})
+
+##################################### option #####################################
+option(ENABLE_DEMO "enable demo" OFF)
+set(ENABLE_DEMO ${ENABLE_DEMO} CACHE BOOL "enable demo" FORCE)
 
 ##################################### platform #####################################
 string(TOLOWER ${CMAKE_SYSTEM_NAME} SYSNAME_LC)
@@ -182,4 +186,8 @@ if(IOS)
 endif()
 
 ########################### sample ######################
-add_subdirectory(example)
+if(MAC)
+    if(ENABLE_DEMO)
+        add_subdirectory(example/mac/rtpdemo)
+    endif()
+endif()
