@@ -1,7 +1,7 @@
 ﻿CMAKE_MINIMUM_REQUIRED(VERSION 3.4.1)
 
 ##################################### cmake util for set_if ########################
-set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../cmake")
 include(cmake_util)
 
 ##################################### project #####################################
@@ -112,74 +112,17 @@ elseif(ANDROID)
 endif()
 
 ##################################### header file #####################################
-include_directories(src)
+include_directories(../src)
 
 ##################################### source code #####################################
 set(SRC
-        src/frtp.h          
-        src/frtp.cpp  
-        src/frtp_internal.h 
-        src/frtp_hevc.h        
-        src/frtp_hevc.cpp   
-        src/frtp_opus.h
-        src/frtp_opus.cpp
+        cli_example.cpp
 )
 
 ############################### config #################################
-add_library(stmrtp 
-    STATIC
+add_executable(sample 
     ${SRC}
 )
-
-if(MAC OR IOS)
-    set_target_properties(stmrtp PROPERTIES
-        XCODE_ATTRIBUTE_ONLY_ACTIVE_ARCH "NO"
-        XCODE_ATTRIBUTE_ALWAYS_SEARCH_USER_PATHS "NO"
-        XCODE_ATTRIBUTE_USE_HEADERMAP "YES"
-        XCODE_ATTRIBUTE_CLANG_ENABLE_MODULES "YES"
-        XCODE_ATTRIBUTE_CLANG_ENABLE_OBJC_ARC "YES"
-        XCODE_ATTRIBUTE_CLANG_ENABLE_OBJC_WEAK "YES"
-        XCODE_ATTRIBUTE_CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING "YES"
-        XCODE_ATTRIBUTE_CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF "YES"
-        XCODE_ATTRIBUTE_DEBUG_INFORMATION_FORMAT "dwarf-with-dsym"
-    )
-endif()
-
-if(IOS)
-    set_target_properties(stmrtp PROPERTIES
-        XCODE_ATTRIBUTE_ENABLE_BITCODE "YES"
-        XCODE_ATTRIBUTE_OTHER_CFLAGS[variant=Debug] "-fembed-bitcode-marker"
-        XCODE_ATTRIBUTE_OTHER_CFLAGS[variant=Release] "-fembed-bitcode"
-        XCODE_ATTRIBUTE_BITCODE_GENERATION_MODE[variant=Debug] "marker"
-        XCODE_ATTRIBUTE_BITCODE_GENERATION_MODE[variant=Release] "bitcode"
-    )
-
-    if(ENABLE_DEMO)
-        message(WARNING "In order to debug source code, demo do not prelink xxx.a")
-    else()
-        if(${STM_IOS_ACTIVE_ARCH} MATCHES "arm64" OR ${STM_IOS_ACTIVE_ARCH} MATCHES "armv7")
-            set(ARCH_TYPE "iphoneos")
-        elseif(${STM_IOS_ACTIVE_ARCH} MATCHES "x86_64" OR ${STM_IOS_ACTIVE_ARCH} MATCHES "i386")
-            set(ARCH_TYPE "iphonesimulator")
-        endif()
-        
-        set(BUILD_TYPE "Debug")
-        if(${CMAKE_BUILD_TYPE} MATCHES "Debug")
-            set(BUILD_TYPE "Debug")
-        elseif(${CMAKE_BUILD_TYPE} MATCHES "Release")
-            set(BUILD_TYPE "Release")
-        endif()
-        message("BUILD_TYPE: ${BUILD_TYPE}")
-
-        # set(PRELINK_LIBS "xxx/yyy/zzz.a")
-
-        set_target_properties(stmrtp PROPERTIES
-            XCODE_ATTRIBUTE_GENERATE_MASTER_OBJECT_FILE "YES"
-            # XCODE_ATTRIBUTE_PRELINK_LIBS ${PRELINK_LIBS}
-            XCODE_ATTRIBUTE_PRELINK_FLAGS "-ObjC"
-        )
-    endif()
-endif()
-
-########################### sample ######################
-add_subdirectory(example)
+target_link_libraries(sample 
+    stmrtp 
+)
